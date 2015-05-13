@@ -50,7 +50,7 @@ _existing_builtins_dict = _builtins_dict.copy()
 # Startupinfo, for ensuring subprocesses don't launch with a visible command window:
 if os.name=='nt':
     startupinfo = subprocess.STARTUPINFO()
-    startupinfo.dwFlags |= 1 #subprocess.STARTF_USESHOWWINDOW # This variable isn't defined, but apparently it's equal to one.
+    startupinfo.dwFlags |= 1 #subprocess.STARTF_USESHOWWINDOW # Th;is variable isn't defined, but apparently it's equal to one.
 else:
     startupinfo = None
         
@@ -82,7 +82,7 @@ def max_or_zero(*args, **kwargs):
     else:
         return max(*args, **kwargs)
     
-def bitfield(arrays,dtype):
+def bitfield(arrays, dtype):
     """converts a list of arrays of ones and zeros into a single
     array of unsigned ints of the given datatype."""
     n = {uint8:8,uint16:16,uint32:32}
@@ -1163,6 +1163,7 @@ class Output(Device):
                     # We evaluate the functions at the midpoints of the
                     # timesteps in order to remove the zero-order hold
                     # error introduced by sampling an analog signal:
+                    # IBS: This assimes uniformly spaced times.
                     try:
                         midpoints = time + 0.5*(time[1] - time[0])
                     except IndexError:
